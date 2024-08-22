@@ -15,7 +15,7 @@ export const getWeatherByCityName = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       const response = await axios.get(
-        `https://api.openweathermap.org/data/2.5/weather?q=Delhi&limit=5&appid=c4d4ac727bd3f295eb439085ac277d80&units=metric`
+        `https://api.openweathermap.org/data/2.5/weather?q=Delhi&limit=5&appid=${API_KEY}&units=metric`
       );
       console.log(response.data);
       return response.data;

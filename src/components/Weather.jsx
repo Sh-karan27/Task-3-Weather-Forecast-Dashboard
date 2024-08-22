@@ -1,22 +1,19 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import image from '../assets/partly-sunny.png';
-import sunnyIcon from '../assets/partly-sunny.png';
-import cloudIcon from '../assets/partly-sunny.png';
-import rainIcon from '../assets/partly-sunny.png';
 import { useDispatch, useSelector } from 'react-redux';
 import { getWeatherByCityName } from '../store/Slices/weatherSlice';
 import { convertTimestampToDate } from '../utils';
+import WeeklyForcast from './WeeklyForcast';
 
 const Weather = () => {
+ 
   const dispatch = useDispatch();
-  const { loading, data, error, lon, lat } = useSelector(
-    (state) => state.weather
-  );
-  console.log(lon, lat);
+  const { loading, data, error } = useSelector((state) => state.weather);
 
   useEffect(() => {
     dispatch(getWeatherByCityName());
   }, [dispatch]);
+  useEffect(() => {}, [data]);
 
   if (loading) {
     return <div>Loading...</div>;
@@ -27,15 +24,6 @@ const Weather = () => {
   }
 
   console.log(data);
-
-  const days = [
-    { day: 'Thu', temp: '24/14', icon: sunnyIcon },
-    { day: 'Fri', temp: '27/13', icon: cloudIcon },
-    { day: 'Sat', temp: '26/12', icon: rainIcon },
-    { day: 'Sun', temp: '22/10', icon: rainIcon },
-    { day: 'Mon', temp: '22/13', icon: cloudIcon },
-    { day: 'Tue', temp: '25/12', icon: sunnyIcon },
-  ];
 
   // Check if weather data is available and has at least one item
   const weatherDescription = data?.weather?.[0]?.description || 'N/A';
@@ -88,17 +76,7 @@ const Weather = () => {
         </div>
 
         {/* Weekly Forecast Section */}
-        <div className='w-3/4 flex items-center justify-between mt-10'>
-          {days.map((day, index) => (
-            <div
-              key={index}
-              className='flex flex-col items-center justify-center text-center'>
-              <h2 className='text-2xl'>{day.day}</h2>
-              <img src={day.icon} alt={day.day} className='w-16' />
-              <h3 className='text-xl'>{day.temp}°</h3>
-            </div>
-          ))}
-        </div>
+        <WeeklyForcast />
       </div>
     </div>
   );
