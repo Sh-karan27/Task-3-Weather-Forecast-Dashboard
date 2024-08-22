@@ -6,13 +6,16 @@ import { convertTimestampToDate } from '../utils';
 import WeeklyForcast from './WeeklyForcast';
 
 const Weather = () => {
- 
+  const [query, setQuery] = useState({
+    city: 'Delhi',
+    units: 'metric',
+  });
   const dispatch = useDispatch();
   const { loading, data, error } = useSelector((state) => state.weather);
 
   useEffect(() => {
-    dispatch(getWeatherByCityName());
-  }, [dispatch]);
+    dispatch(getWeatherByCityName({ query }));
+  }, [dispatch, query]);
   useEffect(() => {}, [data]);
 
   if (loading) {
@@ -27,10 +30,22 @@ const Weather = () => {
 
   // Check if weather data is available and has at least one item
   const weatherDescription = data?.weather?.[0]?.description || 'N/A';
+  const weatherIcon = data?.weather?.[0]?.icon || 'default-icon';
 
   return (
     <div className='w-full min-h-screen flex items-center justify-center p-4'>
       <div className='w-3/4 h-full p-4 flex flex-col items-center justify-center gap-10'>
+        <div className=''>
+          <input
+            type='text'
+            placeholder='Enter city name'
+            className='border p-4 bg-white-500 text-blue-500 rounded-xl outline-none'
+          />
+          <button className='border p-4 bg-blue-500 text-white rounded-xl'>
+            Search
+          </button>
+        </div>
+
         {/* Header Section */}
         <div className='w-full flex flex-col items-center justify-center'>
           <h1 className='text-7xl'>
@@ -47,7 +62,11 @@ const Weather = () => {
               <h2 className='text-5xl'>{weatherDescription}</h2>
             </div>
             <div className='flex items-center justify-center'>
-              <img src={image} alt='Partly Sunny' className='w-1/2' />
+              <img
+                src={`https://openweathermap.org/img/wn/${weatherIcon}@2x.png`}
+                alt='Partly Sunny'
+                className='w-[10rem]'
+              />
             </div>
           </div>
 

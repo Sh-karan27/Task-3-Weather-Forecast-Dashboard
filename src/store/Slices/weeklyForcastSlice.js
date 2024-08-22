@@ -14,7 +14,7 @@ export const getWeeklyForcast = createAsyncThunk(
     try {
       console.log(lat, lon);
       const response = await axios.get(
-        `https://api.openweathermap.org/data/2.5/forecast?q=London&appid=${API_KEY}`
+        `https://api.openweathermap.org/data/2.5/forecast?q=Delhi&appid=${API_KEY}&units=metric`
       );
 
       // console.log(response);

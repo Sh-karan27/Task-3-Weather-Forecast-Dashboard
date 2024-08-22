@@ -24,6 +24,7 @@ const WeeklyForcast = () => {
 
   const filterData = data?.filter((curr) => curr.dt_txt.includes('12:00:00'));
 
+  console.log(filterData);
   return (
     <div className='w-3/4 flex items-center justify-between mt-10'>
       <div className='w-3/4 flex items-center justify-between mt-10'>
@@ -44,7 +45,7 @@ const WeeklyForcast = () => {
                 alt={day.weather[0].description}
                 className='w-16'
               />
-              <h3 className='text-xl'>{temp}°C</h3>
+              <h3 className='text-xl'>{day?.main.temp}°C</h3>
             </div>
           );
         })}
