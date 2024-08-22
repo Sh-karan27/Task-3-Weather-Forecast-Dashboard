@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
-import API_KEY from '../../constants/index.js';
+import { API_KEY } from '../../constants/index.js';
 const initialState = {
   loading: null,
   data: [],
@@ -12,13 +12,14 @@ export const getWeeklyForcast = createAsyncThunk(
 
   async ({ lat, lon }, { rejectWithValue }) => {
     try {
+      console.log(lat, lon);
       const response = await axios.get(
-        `api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${API_KEY}`
+        `https://api.openweathermap.org/data/2.5/forecast?q=London&appid=${API_KEY}`
       );
 
-      console.log(response.data);
+      // console.log(response);
 
-      return response.data;
+      return response.data.list;
     } catch (error) {
       rejectWithValue(error.response.data);
     }

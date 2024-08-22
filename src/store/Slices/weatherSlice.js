@@ -6,8 +6,8 @@ const initialState = {
   loading: null,
   data: [],
   error: null,
-  lon: null,
-  lat: null,
+  lon: null || 77.2167,
+  lat:null|| 28.6667,
 };
 
 export const getWeatherByCityName = createAsyncThunk(
@@ -15,15 +15,19 @@ export const getWeatherByCityName = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       const response = await axios.get(
-        `https://api.openweathermap.org/data/2.5/weather?q=Delhi&limit=5&appid=${API_KEY}&units=metric`
+        `https://api.openweathermap.org/data/2.5/weather?q=London&limit=5&appid=${API_KEY}&units=metric`
       );
-      console.log(response.data);
+      // console.log(response.data);
       return response.data;
     } catch (error) {
       return rejectWithValue(error.response.data);
     }
   }
 );
+
+
+
+
 
 const weatherSlice = createSlice({
   name: 'weather',
