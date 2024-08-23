@@ -56,13 +56,7 @@ Or using yarn: yarn dev
 
 This will start the development server and you can view the application at http://localhost:5173.
 
-
-## Technologies Used
-React: Frontend library
-Redux Toolkit: State management
-Tailwind CSS: Styling
-Vite: Development and build tool
-Axios: HTTP requests
+## Live(vercel) : [https://task-3-weather-forecast-dashboard.vercel.app/]
 
 
 
