@@ -22,7 +22,7 @@ Make sure you have the following installed:
 1. **Clone the repository:**
 
    ```bash
-   git clone https://github.com/yourusername/weather-forcast-dashboard.git
+   git clone [https://github.com/yourusername/weather-forcast-dashboard.git](https://github.com/Sh-karan27/Task-3-Weather-Forecast-Dashboard.git)
    cd weather-forcast-dashboard
 
 2. **Install dependencies**:
