@@ -74,7 +74,7 @@ const Weather = () => {
         {error && <Error message='Invalid city name. Please try again.' />}
 
         {!loading && !error && (
-          <div className='w-3/4 flex items-center justify-between gap-10'>
+          <div className='w-3/4 flex items-center justify-between gap-10 shadow-xl  rounded-xl'>
             <div className='w-full flex flex-col items-center justify-center gap-5'>
               <h1 className='text-7xl'>
                 {data?.name}, {data?.sys?.country}

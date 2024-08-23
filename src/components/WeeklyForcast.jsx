@@ -38,8 +38,8 @@ const WeeklyForcast = ({ query }) => {
           return (
             <div
               key={index}
-              className='flex flex-col items-center justify-center text-center'>
-              <h2 className='text-xl'>{convertTimestampToDate(day.dt)}</h2>
+              className='flex flex-col items-center justify-center text-center shadow-xl  rounded-3xl p-4'>
+              <h2 className='text-2xl '>{convertTimestampToDate(day.dt)}</h2>
               <img
                 src={iconUrl}
                 alt={day.weather[0].description}
