@@ -10,6 +10,7 @@ const WeeklyForcast = ({ query }) => {
   useEffect(() => {
     if (query) {
       dispatch(getWeeklyForcast({ query }));
+      console.log(query);
     }
   }, [dispatch]);
 
@@ -23,34 +24,31 @@ const WeeklyForcast = ({ query }) => {
     return <div>Error loading data</div>;
   }
 
-  const filterData = data?.filter((curr) => curr.dt_txt.includes("12:00:00"));
+  const filterData = data?.filter((curr) => curr.dt_txt.includes('12:00:00'));
 
   console.log(filterData);
   return (
-    <div className="w-full flex items-center justify-center mt-10">
-      <div className="w-3/4 flex items-center justify-between mt-10">
+    <div className='w-full flex items-center justify-center mt-10'>
+      <div className='w-3/4 flex items-center justify-between mt-10'>
         {filterData.map((day, index) => {
-          const date = new Date(day.dt * 1000).toLocaleDateString("en-US", {
-            weekday: "long",
-          });
           
+
           const iconUrl = `https://openweathermap.org/img/wn/${day.weather[0].icon}@2x.png`;
 
           return (
             <div
               key={index}
-              className="flex flex-col items-center justify-center text-center"
-            >
-              <h2 className="text-xl">{convertTimestampToDate(day.dt)}</h2>
+              className='flex flex-col items-center justify-center text-center'>
+              <h2 className='text-xl'>{convertTimestampToDate(day.dt)}</h2>
               <img
                 src={iconUrl}
                 alt={day.weather[0].description}
-                className="w-16"
+                className='w-16'
               />
-              <h3 className="text-xl flex items-center justify-center">
+              <h3 className='text-xl flex items-center justify-center'>
                 {day?.main.temp}
-                <span className="text-xl text-blue-500">
-                  {query.units === "metric" ? (
+                <span className='text-xl text-blue-500'>
+                  {query.units === 'metric' ? (
                     <RiCelsiusFill />
                   ) : (
                     <RiFahrenheitFill />
