@@ -28,7 +28,7 @@ const WeeklyForcast = ({ query }) => {
   return (
     <div className='w-full flex flex-col items-center mt-10'>
       <div className='w-full max-w-4xl flex flex-wrap justify-center gap-4'>
-        {filterData.map((day, index) => {
+        {filterData?.map((day, index) => {
           const iconUrl = `https://openweathermap.org/img/wn/${day.weather[0].icon}@2x.png`;
 
           return (
