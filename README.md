@@ -9,6 +9,23 @@ A weather forecast dashboard built with React, Redux, and Tailwind CSS. This pro
 - Responsive design with Tailwind CSS
 - Unit toggle between metric and imperial
 
+## Technologies Used
+
+- **React**: Frontend library
+- **Redux Toolkit**: State management
+- **Tailwind CSS**: Styling
+- **Vite**: Development and build tool
+- **Axios**: HTTP requests
+
+## Project Structure
+
+- **`src/`**: Contains all the source code for the application.
+  - **`components/`**: React components used in the application.
+  - **`features/`**: Redux features and slices.
+  - **`pages/`**: Page components.
+  - **`styles/`**: Tailwind CSS and other styles.
+  - **`utils/`**: Utility functions.
+
 ## Getting Started
 
 ### Prerequisites
