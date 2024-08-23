@@ -11,7 +11,7 @@ const WeeklyForcast = ({ query }) => {
     if (query) {
       dispatch(getWeeklyForcast({ query }));
     }
-  }, [dispatch, query]);
+  }, [dispatch, query.units]);
 
   const { data, loading, error } = useSelector((state) => state.weeklyForcast);
 
