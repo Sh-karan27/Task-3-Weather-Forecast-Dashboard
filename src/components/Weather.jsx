@@ -49,24 +49,26 @@ const Weather = () => {
 
   return (
     <div className='w-full min-h-screen flex items-center justify-center p-4'>
-      <div className='w-3/4 h-full p-4 flex flex-col items-center justify-center gap-10'>
-        <div className='flex items-center gap-4'>
+      <div className='w-full max-w-4xl p-4 flex flex-col items-center justify-center gap-8'>
+        <div className='w-full flex flex-col items-center gap-4 md:flex-row md:justify-between'>
           <input
             type='text'
             placeholder='Enter city name'
-            className='border p-4 bg-white-500 text-blue-500 rounded-xl outline-none'
+            className='border p-4 bg-white text-blue-500 rounded-xl outline-none w-full md:w-1/3'
             onChange={handleOnChange}
           />
-          <button
-            className='border p-4 bg-blue-500 text-white rounded-xl'
-            onClick={handleSubmit}>
-            Search
-          </button>
-          <button
-            onClick={toggleUnits}
-            className='border p-4 bg-gray-500 text-white rounded-xl'>
-            {metric ? 'Switch to Imperial' : 'Switch to Metric'}
-          </button>
+          <div className='flex gap-4'>
+            <button
+              className='border p-4 bg-blue-500 text-white rounded-xl'
+              onClick={handleSubmit}>
+              Search
+            </button>
+            <button
+              onClick={toggleUnits}
+              className='border p-4 bg-gray-500 text-white rounded-xl'>
+              {metric ? 'Switch to Imperial' : 'Switch to Metric'}
+            </button>
+          </div>
         </div>
 
         {/* Header Section */}
@@ -74,18 +76,18 @@ const Weather = () => {
         {error && <Error message='Invalid city name. Please try again.' />}
 
         {!loading && !error && (
-          <div className='w-3/4 flex items-center justify-between gap-10 shadow-xl  rounded-xl'>
-            <div className='w-full flex flex-col items-center justify-center gap-5'>
-              <h1 className='text-7xl'>
+          <div className='w-full flex flex-col items-center gap-6 md:flex-row md:justify-between shadow-xl rounded-xl p-6'>
+            <div className='flex flex-col items-center gap-4'>
+              <h1 className='text-4xl md:text-5xl'>
                 {data?.name}, {data?.sys?.country}
               </h1>
-              <h3 className='text-3xl text-gray-400'>
+              <h3 className='text-lg md:text-xl text-gray-400'>
                 {convertTimestampToDate(data?.dt)}
               </h3>
             </div>
-            <div className='w-3/4 flex items-center justify-center gap-5'>
-              <div className='flex flex-col items-center justify-center gap-2'>
-                <h1 className='text-5xl flex items-center justify-center gap-2'>
+            <div className='flex flex-col items-center gap-4 md:flex-row md:gap-8'>
+              <div className='flex flex-col items-center'>
+                <h1 className='text-4xl md:text-5xl flex items-center gap-2'>
                   {data?.main?.temp}
                   <span className='text-3xl text-blue-500'>
                     {query.units === 'metric' ? (
@@ -96,27 +98,26 @@ const Weather = () => {
                   </span>
                 </h1>
               </div>
-              <div className='flex  items-center justify-center'>
+              <div className='flex items-center gap-4'>
                 <img
                   src={`https://openweathermap.org/img/wn/${weatherIcon}@2x.png`}
                   alt='Weather Icon'
-                  className='w-[10rem]'
+                  className='w-24 md:w-32'
                 />
-
-                <h2 className='text-3xl text-gray-400'>{weatherDescription}</h2>
+                <h2 className='text-xl md:text-2xl text-gray-400'>{weatherDescription}</h2>
               </div>
             </div>
           </div>
         )}
 
         {/* Main Weather Info Section */}
-        <div className='w-full flex flex-col items-center justify-center gap-10'>
+        <div className='w-full flex flex-col items-center gap-8'>
           {/* Additional Weather Stats */}
           {!loading && !error && (
-            <div className='w-3/4 flex items-center justify-between'>
-              <h1 className='text-3xl flex items-center justify-center gap-2'>
+            <div className='w-full flex flex-col items-center gap-4 md:flex-row md:justify-between'>
+              <h1 className='text-xl md:text-2xl flex items-center gap-2'>
                 {`Max-temp: ${data?.main?.temp_max}`}
-                <span className='text-xl text-blue-500'>
+                <span className='text-lg text-blue-500'>
                   {query.units === 'metric' ? (
                     <RiCelsiusFill />
                   ) : (
@@ -124,9 +125,9 @@ const Weather = () => {
                   )}
                 </span>
               </h1>
-              <h1 className='text-3xl flex items-center justify-center gap-2'>
+              <h1 className='text-xl md:text-2xl flex items-center gap-2'>
                 {`Feels like: ${data?.main?.feels_like}`}
-                <span className='text-xl text-blue-500'>
+                <span className='text-lg text-blue-500'>
                   {query.units === 'metric' ? (
                     <RiCelsiusFill />
                   ) : (
@@ -134,9 +135,9 @@ const Weather = () => {
                   )}
                 </span>
               </h1>
-              <h1 className='text-3xl flex items-center justify-center gap-2'>
-                <span>{`Min-temp: ${data?.main?.temp_min}`}</span>
-                <span className='text-xl text-blue-500'>
+              <h1 className='text-xl md:text-2xl flex items-center gap-2'>
+                {`Min-temp: ${data?.main?.temp_min}`}
+                <span className='text-lg text-blue-500'>
                   {query.units === 'metric' ? (
                     <RiCelsiusFill />
                   ) : (
@@ -150,18 +151,18 @@ const Weather = () => {
 
         {/* Circular Indicators */}
         {!loading && !error && (
-          <div className='w-3/4 flex items-center justify-between'>
-            <div className='w-[10rem] h-[10rem] border-[10px] border-blue-500 rounded-full flex flex-col items-center justify-center'>
-              <h1 className='text-3xl'>{data?.wind?.speed}</h1>
-              <h2 className='text-xl mt-2'>Wind</h2>
+          <div className='w-full flex flex-col items-center gap-8 md:flex-row md:justify-between'>
+            <div className='w-24 h-24 border-4 border-blue-500 rounded-full flex flex-col items-center justify-center'>
+              <h1 className='text-xl md:text-md'>{data?.wind?.speed}</h1>
+              <h2 className='text-sm md:text-md mt-1'>Wind</h2>
             </div>
-            <div className='w-[10rem] h-[10rem] border-[10px] border-blue-500 rounded-full flex flex-col items-center justify-center'>
-              <h1 className='text-3xl'>{`${data?.main?.humidity}%`}</h1>
-              <h2 className='text-xl mt-2'>Humidity</h2>
+            <div className='w-24 h-24 border-4 border-blue-500 rounded-full flex flex-col items-center justify-center'>
+              <h1 className='text-xl md:text-md'>{`${data?.main?.humidity}%`}</h1>
+              <h2 className='text-sm md:text-md mt-1'>Humidity</h2>
             </div>
-            <div className='w-[10rem] h-[10rem] border-[10px] border-blue-500 rounded-full flex flex-col items-center justify-center'>
-              <h1 className='text-3xl'>{`${data?.main?.pressure} mb`}</h1>
-              <h2 className='text-xl mt-2'>Barometer</h2>
+            <div className='w-24 h-24 border-4 border-blue-500 rounded-full flex flex-col items-center justify-center'>
+              <h1 className='text-xl md:text-md'>{`${data?.main?.pressure} mb`}</h1>
+              <h2 className='text-sm md:text-md mt-1'>Barometer</h2>
             </div>
           </div>
         )}
