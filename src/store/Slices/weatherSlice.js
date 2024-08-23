@@ -13,12 +13,12 @@ const initialState = {
 export const getWeatherByCityName = createAsyncThunk(
   '/weather/city',
   async ({ query }, { rejectWithValue }) => {
-    console.log(query);
+    
     try {
       const response = await axios.get(
         `https://api.openweathermap.org/data/2.5/weather?q=${query.city}&limit=5&appid=${API_KEY}&units=${query.units}`
       );
-      // console.log(response.data);
+     
       return response.data;
     } catch (error) {
       return rejectWithValue(error.response.data);

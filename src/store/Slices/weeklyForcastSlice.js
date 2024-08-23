@@ -10,13 +10,11 @@ const initialState = {
 export const getWeeklyForcast = createAsyncThunk(
   '/weather/weekly',
 
-  async ({ query}, { rejectWithValue }) => {
+  async ({ query }, { rejectWithValue }) => {
     try {
       const response = await axios.get(
         `https://api.openweathermap.org/data/2.5/forecast?q=${query.city}&appid=${API_KEY}&units=${query.units}`
       );
-
-      // console.log(response);
 
       return response.data.list;
     } catch (error) {

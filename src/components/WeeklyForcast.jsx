@@ -10,7 +10,7 @@ const WeeklyForcast = ({ query }) => {
   useEffect(() => {
     if (query) {
       dispatch(getWeeklyForcast({ query }));
-      console.log(query);
+      
     }
   }, [dispatch]);
 
@@ -26,7 +26,7 @@ const WeeklyForcast = ({ query }) => {
 
   const filterData = data?.filter((curr) => curr.dt_txt.includes('12:00:00'));
 
-  console.log(filterData);
+  
   return (
     <div className='w-full flex items-center justify-center mt-10'>
       <div className='w-3/4 flex items-center justify-between mt-10'>
